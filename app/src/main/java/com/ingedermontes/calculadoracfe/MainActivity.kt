@@ -2,6 +2,8 @@ package com.ingedermontes.calculadoracfe
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.delay
@@ -13,13 +15,10 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        runBlocking {
-            // Delay de 3.5 segundos
-            delay(3500)
-
-            // Inicia El segundo Activty despues del delay
-            val intent = Intent(this@MainActivity, MainActivity2::class.java)
+        // Start the second activity after a delay
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
-        }
+        }, 3000) // Delay in milliseconds
     }
 }
